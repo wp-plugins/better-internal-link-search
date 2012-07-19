@@ -64,6 +64,9 @@ Type `-` or `-help` in the search field and the search modifiers will be listed 
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed bug preventing link popup from opening in HTML mode
+
 = 1.1 =
 * Include term archives in results.
 * Include scheduled posts in results.

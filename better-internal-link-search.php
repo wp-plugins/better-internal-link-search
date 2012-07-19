@@ -2,7 +2,7 @@
 /*
 Plugin Name: Better Internal Link Search
 Plugin URI: http://wordpress.org/extend/plugins/better-internal-link-search/
-Version: 1.1
+Version: 1.1.1
 Description: Improve the internal link popup functionality with time saving enhancements and features.
 Author: Blazer Six, Inc.
 Author URI: http://www.blazersix.com/
@@ -401,11 +401,11 @@ class Blazer_Six_Better_Internal_Link_Search {
 						searchTerm = $(a).text();
 					}
 				} else {
-					var start = wpLink.textarea().selectionStart,
-						end = wpLink.textarea().selectionEnd;
+					var start = wpLink.textarea.selectionStart,
+						end = wpLink.textarea.selectionEnd;
 					
 					if ( 0 < end-start ) {
-						searchTerm = wpLink.textarea().value.substring(start, end);
+						searchTerm = wpLink.textarea.value.substring(start, end);
 					}
 				}
 				
