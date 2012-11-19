@@ -64,7 +64,7 @@ Type `-` or `-help` in the search field and the search modifiers will be listed 
 
 == Changelog ==
 
-= 1.1.2=
+= 1.1.2 =
 * Fixed a bug that didn't allow builtin search modifiers to be disabled.
 * Added an option on the Writing Settings screen to disable the automatic searching of text selected in the editor when the Internal Linking popup is activated, so that it doesn't cause a delay on sites with a lot of content.
 * Added an upgrade routine to setup default settings and store the current version number for future upgrades.
