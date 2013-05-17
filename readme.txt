@@ -28,7 +28,7 @@ Beyond that simple change are more powerful features that can be customized for 
 * Powerful modifiers included for searching additional data sources to make linking fast and easy (Wikipedia, GitHub, iTunes, Spotify, Codex).
 * Extendable so developers can add their own sources.
 
-= Instant Search (New!) =
+= Typeahead Search =
 
 Instantly see search results for pages, posts, media items or other custom post types on their Manage Posts screens. As soon as you start typing in the search field, the table instantly updates with results for whichever post type you're viewing. Pressing enter or clicking the search button will continue to return posts using the default search algorithm (post titles and content).
 
@@ -59,7 +59,7 @@ Type `shortcuts` in the search field and all of your registered shortcuts will b
 Type `-` or `-help` in the search field and the search modifiers will be listed with their syntax and a brief description about what they do.
 
 = There's a slight delay when opening the internal link popup. Help? =
-If your site has a lot of content, the automatic search feature may cause it to lag as search results are retrieved. You can disable this feature by unchecking the "Automatic Search" field on the Writing settings screen in your dashboard (go to Settings->Writing).
+If your site has a lot of content, the automatic search feature may cause it to lag as search results are retrieved. You can disable this feature by unchecking the "Automatic Search" field on the Writing settings screen in your dashboard (go to Settings &rarr; Writing).
 
 == Screenshots ==
 
@@ -70,6 +70,11 @@ If your site has a lot of content, the automatic search feature may cause it to 
 5. A search modifier in action.
 
 == Changelog ==
+
+= 1.2.2 =
+* Changed keypress event for typeahead search results to work in Chrome.
+* Added an action to the typeahead AJAX callback so custom P2P columns display.
+* Added support for WordPress SEO custom columns.
 
 = 1.2.1 =
 * Fixed a bug with instant search in WordPress 3.5.
