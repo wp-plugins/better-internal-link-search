@@ -2,7 +2,7 @@
 Contributors: blazersix, bradyvercher
 Tags: links, internal links, search, editor, nav menus
 Requires at least: 3.4
-Tested up to: 3.6
+Tested up to: 3.7
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,7 +30,7 @@ Beyond that simple change are more powerful features that can be customized for 
 
 = Typeahead Search =
 
-Instantly see search results for pages, posts, media items or other custom post types on their Manage Posts screens. As soon as you start typing in the search field, the table updates with results for whichever post type you're viewing. Pressing enter or clicking the search button will continue to return posts using the default search algorithm (post titles and content).
+Instantly see search results for pages, posts, media items or other custom post types on their Manage Posts screens. As soon as you start typing in the search field, the table instantly updates with results for whichever post type you're viewing. Pressing enter or clicking the search button will continue to return posts using the default search algorithm (post titles and content).
 
 = Additional Resources =
 
@@ -76,6 +76,12 @@ If your site has a lot of content, the automatic search feature may cause it to 
 5. A search modifier in action.
 
 == Changelog ==
+
+= 1.2.5
+* Clear floats for descriptions in results to prevent overlap.
+* Quit suppressing filters instant search so other plugins can filter the query.
+* Initialize the instant search query using wp_edit_posts_query() instead of WP_Query().
+* Fix strict PHP notices.
 
 = 1.2.4 =
 * Fix a syntax error when calling array_merge().

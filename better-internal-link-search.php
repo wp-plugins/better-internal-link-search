@@ -3,13 +3,13 @@
  * Plugin Name: Better Internal Link Search
  * Plugin URI: http://wordpress.org/extend/plugins/better-internal-link-search/
  * Description: Improve the internal link popup functionality with time saving enhancements and features.
- * Version: 1.2.4
+ * Version: 1.2.5
  * Author: Blazer Six
  * Author URI: http://www.blazersix.com/
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: better-internal-link-search
- * Domain Path: /languages/
+ * Domain Path: /languages
  *
  * @package BetterInternalLinkSearch
  * @author Brady Vercher <brady@blazersix.com>
@@ -83,7 +83,8 @@ class Better_Internal_Link_Search {
 	/**
 	 * Load the plugin language files.
 	 *
-	 * @see http://www.geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
+	 * @link http://ottopress.com/2013/language-packs-101-prepwork/
+	 * @link http://www.geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
 	 *
 	 * @since 1.2.3
 	 */
@@ -318,7 +319,7 @@ class Better_Internal_Link_Search {
 		wp_localize_script( 'better-internal-link-search-internal-link-manager', 'BilsSettings', Better_Internal_Link_Search_Settings::get_settings() );
 		?>
 		<style type="text/css">
-		#wp-link .item-description { display: block; padding: 3px 0 0 10px;}
+		#wp-link .item-description { display: block; clear: both; padding: 3px 0 0 10px;}
 		</style>
 		<?php
 	}
