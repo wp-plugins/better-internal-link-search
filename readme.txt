@@ -2,8 +2,8 @@
 Contributors: blazersix, bradyvercher
 Tags: links, internal links, search, editor, nav menus
 Requires at least: 3.4
-Tested up to: 3.7
-Stable tag: trunk
+Tested up to: 3.8
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
