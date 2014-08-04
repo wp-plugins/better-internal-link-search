@@ -3,7 +3,7 @@
  * Plugin Name: Better Internal Link Search
  * Plugin URI: http://wordpress.org/extend/plugins/better-internal-link-search/
  * Description: Improve the internal link popup functionality with time saving enhancements and features.
- * Version: 1.2.5
+ * Version: 1.2.6
  * Author: Blazer Six
  * Author URI: http://www.blazersix.com/
  * License: GPL-2.0+
@@ -83,15 +83,10 @@ class Better_Internal_Link_Search {
 	/**
 	 * Load the plugin language files.
 	 *
-	 * @link http://ottopress.com/2013/language-packs-101-prepwork/
-	 * @link http://www.geertdedeckere.be/article/loading-wordpress-language-files-the-right-way
-	 *
 	 * @since 1.2.3
 	 */
 	public static function load_textdomain() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'better-internal-link-search' );
-		load_textdomain( 'better-internal-link-search', WP_LANG_DIR . '/better-internal-link-search/' . $locale . '.mo' );
-		load_plugin_textdomain( 'better-internal-link-search', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'better-internal-link-search', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
@@ -136,10 +131,11 @@ class Better_Internal_Link_Search {
 			// Scheduled post concept from Evan Solomon's plugin.
 			// http://wordpress.org/extend/plugins/internal-linking-for-scheduled-posts/
 			$post_status = (array) $query->get( 'post_status' );
-			if ( ! in_array( 'future', $post_status ) ) {
-				$post_status[] = 'future';
-				$query->set( 'post_status', $post_status );
+			$post_status[] = 'future';
+			if ( current_user_can( 'read_private_posts' ) ) {
+				$post_status[] = 'private';
 			}
+			$query->set( 'post_status', array_unique( $post_status ) );
 
 			// Make sure 'posts_per_page' hasn't been explicitly set by a modifier to allow for paging of local results before overriding it.
 			if ( ! $query->get( 'posts_per_page' ) ) {
@@ -241,11 +237,14 @@ class Better_Internal_Link_Search {
 			require_once(ABSPATH . WPINC . '/class-wp-editor.php');
 			$posts = _WP_Editors::wp_link_query( $args );
 			if ( $posts ) {
-				$post_status_object = get_post_status_object( 'future' );
+				$future_status_object = get_post_status_object( 'future' );
+				$private_status_object = get_post_status_object( 'private' );
 
 				foreach( $posts as $key => $post ) {
 					if ( 'future' == get_post_status( $post['ID'] ) ) {
-						$posts[ $key ]['info'] = $post_status_object->label;
+						$posts[ $key ]['info'] = $future_status_object->label;
+					} elseif ( 'private' == get_post_status( $post['ID'] ) ) {
+						$posts[ $key ]['info'] .= ' (' . $private_status_object->label . ')';
 					}
 				}
 
@@ -315,8 +314,17 @@ class Better_Internal_Link_Search {
 	 * @since 1.0.0
 	 */
 	public static function admin_head_post() {
-		wp_enqueue_script( 'better-internal-link-search-internal-link-manager', BETTER_INTERNAL_LINK_SEARCH_URL . 'js/internal-link-manager.js', array( 'jquery' ) );
-		wp_localize_script( 'better-internal-link-search-internal-link-manager', 'BilsSettings', Better_Internal_Link_Search_Settings::get_settings() );
+		wp_enqueue_script(
+			'better-internal-link-search-internal-link-manager',
+			BETTER_INTERNAL_LINK_SEARCH_URL . 'js/internal-link-manager.js',
+			array( 'jquery', 'underscore', 'wplink' )
+		);
+
+		wp_localize_script(
+			'better-internal-link-search-internal-link-manager',
+			'BilsSettings',
+			Better_Internal_Link_Search_Settings::get_settings()
+		);
 		?>
 		<style type="text/css">
 		#wp-link .item-description { display: block; clear: both; padding: 3px 0 0 10px;}
@@ -335,11 +343,11 @@ class Better_Internal_Link_Search {
 	public static function get_shortcuts() {
 		$shortcuts = apply_filters( 'better_internal_link_search_shortcuts', array(
 			'home' => array(
-				'title'     => 'Home',
+				'title'     => __( 'Home', 'better-internal-link-search' ),
 				'permalink' => home_url( '/' ),
 			),
 			'siteurl' => array(
-				'title'     => 'Site URL',
+				'title'     => __( 'Site URL', 'better-internal-link-search' ),
 				'permalink' => site_url( '/' ),
 			)
 		) );
