@@ -3,7 +3,7 @@
  * Plugin Name: Better Internal Link Search
  * Plugin URI: http://wordpress.org/extend/plugins/better-internal-link-search/
  * Description: Improve the internal link popup functionality with time saving enhancements and features.
- * Version: 1.2.7
+ * Version: 1.2.8
  * Author: Blazer Six
  * Author URI: http://www.blazersix.com/
  * License: GPL-2.0+
@@ -166,7 +166,7 @@ class Better_Internal_Link_Search {
 		$searchand = '';
 
 		foreach( (array) $q['search_terms'] as $term ) {
-			$term = esc_sql( like_escape( $term ) );
+			$term = esc_sql( self::esc_like( $term ) );
 			$search.= "{$searchand}(($wpdb->posts.post_title LIKE '{$n}{$term}{$n}'))";
 			$searchand = ' AND ';
 		}
@@ -253,7 +253,7 @@ class Better_Internal_Link_Search {
 
 			if ( 'yes' === Better_Internal_Link_Search_Settings::get_settings( 'include_term_results' ) ) {
 				// Search for matching term archives.
-				$search = '%' . like_escape( $s ) . '%';
+				$search = '%' . self::esc_like( $s ) . '%';
 				$terms = $wpdb->get_results( $wpdb->prepare( "SELECT t.term_id, t.name, tt.taxonomy
 					FROM $wpdb->terms t
 					INNER JOIN $wpdb->term_taxonomy tt ON t.term_id=tt.term_id
@@ -465,5 +465,23 @@ class Better_Internal_Link_Search {
 			$plugin_data = get_plugin_data( __FILE__ );
 			update_option( 'better_internal_link_search_version', $plugin_data['Version'] );
 		}
+	}
+
+	/**
+	 * Escape LIKE special characters.
+	 *
+	 * @since 1.2.8
+	 *
+	 * @see wpdb::esc_like()
+	 * @link https://make.wordpress.org/core/2014/06/20/like_escape-is-deprecated-in-wordpress-4-0/
+	 */
+	public static function esc_like( $text ) {
+		global $wpdb;
+
+		if ( method_exists( $wpdb, 'esc_like' ) ) {
+			return $wpdb->esc_like( $text );
+		}
+
+		return addcslashes( $text, '_%\\' );
 	}
 }
