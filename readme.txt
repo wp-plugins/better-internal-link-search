@@ -1,8 +1,8 @@
 === Better Internal Link Search ===
 Contributors: blazersix, bradyvercher
 Tags: links, internal links, search, editor, nav menus
-Requires at least: 3.4
-Tested up to: 3.7
+Requires at least: 3.8
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,7 +36,7 @@ Instantly see search results for pages, posts, media items or other custom post 
 
 * [Write a review](http://wordpress.org/support/view/plugin-reviews/better-internal-link-search#postform)
 * [Have a question?](http://wordpress.org/support/plugin/better-internal-link-search)
-* [Contribute on GitHub](https://github.com/bradyvercher/wp-better-internal-link-search)
+* [Contribute on GitHub](https://github.com/bradyvercher/better-internal-link-search)
 * [Follow @bradyvercher](https://twitter.com/bradyvercher)
 * [Hire Blazer Six](http://www.blazersix.com/)
 
@@ -77,19 +77,28 @@ If your site has a lot of content, the automatic search feature may cause it to 
 
 == Changelog ==
 
-= 1.2.5
-* Clear floats for descriptions in results to prevent overlap.
-* Quit suppressing filters instant search so other plugins can filter the query.
-* Initialize the instant search query using wp_edit_posts_query() instead of WP_Query().
-* Fix strict PHP notices.
+= 1.2.7 =
+* Added a setting to disable inclusion of term archives in default search results.
+* Fixed a bug that caused the 'pre_better_internal_link_search_results' filter to have no effect on results.
+
+= 1.2.6 =
+* Fixed the automatic searching feature that quit working in WordPress 3.9. Works in 4.0+.
+* Internationalized additional strings.
+* Minor code clean-up.
+
+= 1.2.5 =
+* Cleared floats for descriptions in results to prevent overlap.
+* Quit suppressing filters for instant search so other plugins can filter the query.
+* Initialized the instant search query using wp_edit_posts_query() instead of WP_Query().
+* Fixed strict PHP notices.
 
 = 1.2.4 =
-* Fix a syntax error when calling array_merge().
+* Fixed a syntax error when calling array_merge().
 
 = 1.2.3 =
-* Add a check to prevent errors with plugins that don't use the WordPress AJAX API.
-* Update JavaScript to pass JSHint tests.
-* Update text domain and improve loading of language files.
+* Added a check to prevent errors with plugins that don't use the WordPress AJAX API.
+* Updated JavaScript to pass JSHint tests.
+* Updated text domain and improved loading of language files.
 
 = 1.2.2 =
 * Changed keypress event for typeahead search results to work in Chrome.
