@@ -3,7 +3,7 @@
  * Plugin Name: Better Internal Link Search
  * Plugin URI: http://wordpress.org/extend/plugins/better-internal-link-search/
  * Description: Improve the internal link popup functionality with time saving enhancements and features.
- * Version: 1.2.8
+ * Version: 1.2.9
  * Author: Blazer Six
  * Author URI: http://www.blazersix.com/
  * License: GPL-2.0+
@@ -264,7 +264,7 @@ class Better_Internal_Link_Search {
 					foreach ( $terms as $term ) {
 						$taxonomy = get_taxonomy( $term->taxonomy );
 
-						if ( $taxonomy->query_var ) {
+						if ( isset( $taxonomy->query_var ) ) {
 							$results[] = array(
 								'title'     => trim( esc_html( strip_tags( $term->name ) ) ),
 								'permalink' => get_term_link( (int) $term->term_id, $term->taxonomy ),
