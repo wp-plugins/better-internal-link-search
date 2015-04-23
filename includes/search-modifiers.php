@@ -39,49 +39,81 @@
 function bils_default_modifier_help( $results ) {
 	$modifiers = array(
 		'codex' => array(
-			'title'     => '<strong>-codex {query}</strong></span><span class="item-description">Search the WordPress Codex</span>',
+			'title'     => sprintf(
+				'<strong>-codex {query}</strong></span><span class="item-description">%s</span>',
+				__( 'Search the WordPress Codex', 'better-internal-link-search' )
+			),
 			'permalink' => 'http://codex.wordpress.org/',
-			'info'      => 'WordPress Codex',
+			'info'      => __( 'WordPress Codex', 'better-internal-link-search' ),
 		),
 		'gists' => array(
-			'title'     => '<strong>-gists {username}</strong></span><span class="item-description">Lists gists for the specified user.</span>',
+			'title'     => sprintf(
+				'<strong>-gists {username}</strong></span><span class="item-description">%s</span>',
+				__( 'Lists gists for the specified user.', 'better-internal-link-search' )
+			),
 			'permalink' => 'https://gist.github.com/',
-			'info'      => 'GitHub',
+			'info'      => __( 'GitHub', 'better-internal-link-search' ),
 		),
 		'github' => array(
-			'title'     => '<strong>-github {query}</strong></span><span class="item-description">Searches GitHub for a respository matching the query.</span>',
+			'title'     => sprintf(
+				'<strong>-github {query}</strong></span><span class="item-description">%s</span>',
+				__( 'Searches GitHub for a respository matching the query.', 'better-internal-link-search' )
+			),
 			'permalink' => 'https://github.com/',
-			'info'      => 'GitHub',
+			'info'      => __( 'GitHub', 'better-internal-link-search' ),
 		),
 		'itunes' => array(
-			'title'     => '<strong>-itunes:{entity} {query}</strong></span><span class="item-description">Search iTunes for a particular entity. Entity can be \'album\', \'artist\', \'podcast\' or \'track\'; It is optional and defaults to \'album\'.</span>',
+			'title'     => sprintf(
+				'<strong>-itunes:{entity} {query}</strong></span><span class="item-description">%s</span>',
+				__( "Search iTunes for a particular entity. Entity can be 'album', 'artist', 'podcast' or 'track'; It is optional and defaults to 'album'.", 'better-internal-link-search' )
+			),
 			'permalink' => 'http://www.apple.com/itunes/',
-			'info'      => 'iTunes',
+			'info'      => __( 'iTunes', 'better-internal-link-search' ),
 		),
 		'media' => array(
-			'title'     => '<strong>-media {query}</strong></span><span class="item-description">Search for media attachments in your local WordPress installation. The URL returned will link directly to the file.</span>',
+			'title'     => sprintf(
+				'<strong>-media {query}</strong></span><span class="item-description">%s</span>',
+				__( 'Search for media attachments in your local WordPress installation. The URL returned will link directly to the file.', 'better-internal-link-search' )
+			),
 			'permalink' => home_url( '/' ),
-			'info'      => 'Local',
+			'info'      => __( 'Local', 'better-internal-link-search' ),
 		),
 		'plugins' => array(
-			'title'     => '<strong>-plugins {query}</strong></span><span class="item-description">Search the WordPress plugin directory.</span>',
+			'title'     => sprintf(
+				'<strong>-plugins {query}</strong></span><span class="item-description">%s</span>',
+				__( 'Search the WordPress plugin directory.', 'better-internal-link-search' )
+			),
 			'permalink' => 'http://wordpress.org/extend/plugins/',
-			'info'      => 'WordPress Plugins',
+			'info'      => __( 'WordPress Plugins', 'better-internal-link-search' ),
+		),
+		'shortlinks' => array(
+			'title'     => sprintf(
+				'<strong>-shortlink {query}</strong></span><span class="item-description">%s</span>',
+				__( 'Insert a shortlink to a post or page instead of the full permalink.', 'better-internal-link-search' )
+			),
+			'permalink' => home_url( '/' ),
+			'info'      => __( 'Local', 'better-internal-link-search' ),
 		),
 		'spotify' => array(
-			'title'     => '<strong>-spotify:{entity} {query}</strong></span><span class="item-description">Search Spotify for a particular entity. Entity can be \'album\', \'artist\', or \'track\'; is optional and defaults to \'album\'.</span>',
+			'title'     => sprintf(
+				'<strong>-spotify:{entity} {query}</strong></span><span class="item-description">%s</span>',
+				__( "Search Spotify for a particular entity. Entity can be 'album', 'artist', or 'track'; is optional and defaults to 'album'.", 'better-internal-link-search' )
+			),
 			'permalink' => 'http://www.spotify.com/',
-			'info'      => 'Spotify',
+			'info'      => __( 'Spotify', 'better-internal-link-search' ),
 		),
 		'user' => array(
-			'title'     => '<strong>-user:{url_type}:all {user_login}</strong></span><span class="item-description">Search your local WordPress installation for the specified user and return the URL specified by \'<code>url_type</code>\'. The default URL returned is the user\'s archive listing their published posts. If set to \'<code>url</code>\', the returned link will be their website as entered in their profile. Setting the third argument to \'<code>all</code>\' will return all users and not just authors. The \'<code>user_login</code>\' parameter must be an exact match; if left blank, all users are returned.</span>',
+			'title'     => sprintf(
+				'<strong>-user:{url_type}:all {user_login}</strong></span><span class="item-description">%s</span>',
+				__( "Search your local WordPress installation for the specified user and return the URL specified by <code>url_type</code>. The default URL returned is the user's archive listing their published posts. If set to <code>url</code>, the returned link will be their website as entered in their profile. Setting the third argument to <code>all</code> will return all users and not just authors. The <code>user_login</code> parameter must be an exact match; if left blank, all users are returned.", 'better-internal-link-search' )
+			),
 			'permalink' => home_url( '/' ),
-			'info'      => 'Local',
+			'info'      => __( 'Local', 'better-internal-link-search' ),
 		),
 		'wikipedia' => array(
 			'title'     => '<strong>-wikipedia {query}</strong></span>',
 			'permalink' => 'http://www.wikipedia.org/',
-			'info'      => 'Wikipedia',
+			'info'      => __( 'Wikipedia', 'better-internal-link-search' ),
 		),
 	);
 
@@ -95,7 +127,7 @@ add_filter( 'better_internal_link_search_modifier_help', 'bils_default_modifier_
  * <code>-codex {query}</code>
  */
 function bils_wpcodex_search( $results, $args ) {
-	// Don't want to hit the API for queries less than three characters.
+	// Don't hit the API for queries less than three characters.
 	if ( strlen( $args['s'] ) < 3 ) {
 		wp_die( 0 );
 	}
@@ -169,7 +201,7 @@ add_filter( 'better_internal_link_search_modifier-gists', 'bils_gists_search', 1
  * <code>-github {query}</code>
  */
 function bils_github_search( $results, $args ) {
-	// Don't want to hit the api for queries less than three characters.
+	// Don't hit the api for queries less than three characters.
 	if ( strlen( $args['s'] ) < 3 ) {
 		wp_die( 0 );
 	}
@@ -215,7 +247,7 @@ add_filter( 'better_internal_link_search_modifier-github', 'bils_github_search',
  * <code>-itunes:{entity} {query}</code> (entities: album, artist, podcast, track)
  */
 function bils_itunes_search( $results, $args ) {
-	// Don't want to hit the api for queries less than three characters.
+	// Don't hit the api for queries less than three characters.
 	if ( strlen( $args['s'] ) < 3 ) {
 		wp_die( 0 );
 	}
@@ -231,6 +263,7 @@ function bils_itunes_search( $results, $args ) {
 		'podcast' => 'podcast',
 		'track'   => 'song',
 	);
+
 	$entity = ( isset( $args['modifier'][1] ) && array_key_exists( $args['modifier'][1], $api_entities ) ) ? $api_entities[ $args['modifier'][1] ] : 'album';
 
 	$search_args = array(
@@ -318,7 +351,7 @@ add_filter( 'better_internal_link_search_modifier-itunes', 'bils_itunes_search',
  * <code>-plugins {query}</code>
  */
 function bils_wpplugins_search( $results, $args ) {
-	// Don't want to hit the api for queries less than three characters.
+	// Don't hit the api for queries less than three characters.
 	if ( strlen( $args['s'] ) < 3 ) {
 		wp_die( 0 );
 	}
@@ -507,7 +540,7 @@ add_filter( 'better_internal_link_search_modifier-wikipedia', 'bils_wikipedia_se
 /**
  * Search for an attachment.
  *
- * Will produce the raw link to the media (not the permalink).
+ * Will produce the direct link to the media (not the permalink).
  *
  * <code>-media {filename}</code>
  *
@@ -536,3 +569,19 @@ function bils_media_search( $results, $args ) {
 	return $results;
 }
 add_filter( 'better_internal_link_search_modifier-media', 'bils_media_search', 10, 2 );
+
+/**
+ * Convert returned permalinks to shortlinks.
+ *
+ * <code>-shortlink {query}</code>
+ */
+function bils_convert_to_shortlinks( $results, $args ) {
+	if ( ! empty( $args['modifier'][0] ) && 'shortlink' == $args['modifier'][0] ) {
+		foreach ( $results as $key => $result ) {
+			$results[ $key ]['permalink'] = wp_get_shortlink( $result['ID'] );
+		}
+	}
+
+	return $results;
+}
+add_filter( 'better_internal_link_search_results', 'bils_convert_to_shortlinks', 10, 2 );
